@@ -102,11 +102,11 @@ auth:
   enabled: true
   ## @param auth.rootUser MongoDB(&reg;) root user
   ##
-  rootUser: TO-BE-UPDATED
+  rootUser: Admin
   ## @param auth.rootPassword MongoDB(&reg;) root password
   ## ref: https://github.com/bitnami/bitnami-docker-mongodb/blob/master/README.md#setting-the-root-password-on-first-run
   ##
-  rootPassword: "TO-BE-UPDATED"
+  rootPassword: pass
   ## MongoDB(&reg;) custom user and database
   ## ref: https://github.com/bitnami/bitnami-docker-mongodb/blob/master/README.md#creating-users-and-databases-on-first-run
   ## @param auth.username Custom user to be created during the initialization
@@ -910,7 +910,7 @@ mongos:
   ## @param mongos.livenessProbe.successThreshold Success threshold for livenessProbe
   ##
   livenessProbe:
-    enabled: true
+    enabled: false
     initialDelaySeconds: 60
     periodSeconds: 30
     timeoutSeconds: 20
@@ -926,7 +926,7 @@ mongos:
   ## @param mongos.readinessProbe.successThreshold Success threshold for readinessProbe
   ##
   readinessProbe:
-    enabled: true
+    enabled: false
     initialDelaySeconds: 10
     periodSeconds: 30
     timeoutSeconds: 20
