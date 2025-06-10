@@ -1,5 +1,4 @@
-# Default values for uidam-authorization-server.
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: docker.io/eclipseecsp/uidam-authorization-server
@@ -12,41 +11,33 @@ fullnameOverride: ""
 podAnnotations: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
-
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 tenant:
-  tenantId: "TO-BE-UPDATED"
-  tenantName: "TO-BE-UPDATED"
+  tenantId: "tenant-001"
+  tenantName: "example-tenant"
   jksEnabled: "true"
-  alias: "TO-BE-UPDATED"
+  alias: "uidamauthserver"
   cache:
     expiration: "60"
     maxsize: "100"
     clientids: "token-mgmt,device-mgmt"
   account:
-    accountId: "TO-BE-UPDATED"
-    accountName: "TO-BE-UPDATED"
-    accountType: "TO-BE-UPDATED"
+    accountId: "acc-001"
+    accountName: "example-account"
+    accountType: "B2B"
     accountFieldEnabled: "true"
   client:
     accessTokenTtl: "3600"
     idTokenTtl: "3600"
-    refreshTokenTtl: "3600"
+    refreshTokenTtl: "86400"
     authCodeTtl: "300"
     oauthScopeCustomization: "false"
   user:
     captchaAfterInvalidFailures: "1"
     captchaRequired: "false"
-    maxAllowedLoginAttempts: "3"
+    maxAllowedLoginAttempts: "5"
     jwtAdditionalClaimAttributes: "accountType, accountName"
   externalUrls:
     userManagementUrl: "http://uidam-user-management:8080"
@@ -61,20 +52,18 @@ tenant:
   cert:
     jwtPublicKey: "app.pub"
     jwtPrivateKey: "app.key"
-    jwtKeyId: "TO-BE-UPDATED"
-  # Please register site over google to enable google recaptcha services and update details below
+    jwtKeyId: "jwt-key-001"
   captcha:
     recaptchaVerifyUrl: "https://www.google.com/recaptcha/api/siteverify"
-    recaptchaKeySite: "xxx"
-  externalIdpEnabled: false
+    recaptchaKeySite: "recaptcha-site-key"
+  externalIdpEnabled: true
   internalLoginEnabled: true
   externalIdpClientName: federated-user-client
-  # Please update the below details by creating clients in respective IDPs as per the client to be configured
   externalIdpRegisteredClients:
     - clientName: Google
       registrationId: google
-      clientId: xxx
-      clientSecret: xxx
+      clientId: google-client-id
+      clientSecret: google-client-secret
       clientAuthenticationMethod: client_secret_basic
       scope: openid, profile, email, address, phone
       authorizationUri: https://accounts.google.com/o/oauth2/v2/auth
@@ -88,8 +77,8 @@ tenant:
       claimMappings: firstName#given_name,lastName#family_name,email#email
     - clientName: Github
       registrationId: github
-      clientId: xxx
-      clientSecret: xxx
+      clientId: github-client-id
+      clientSecret: github-client-secret
       clientAuthenticationMethod: client_secret_basic
       scope: read:user
       authorizationUri: https://github.com/login/oauth/authorize
@@ -103,23 +92,23 @@ tenant:
       claimMappings: firstName#name,email#email
     - clientName: Cognito
       registrationId: cognito
-      clientId: xxx
-      clientSecret: xxx
+      clientId: cognito-client-id
+      clientSecret: cognito-client-secret
       clientAuthenticationMethod: client_secret_basic
       scope: openid,profile
-      authorizationUri: xxx
-      tokenUri: https:xxx
-      userInfoUri: xxx
+      authorizationUri: https://your-cognito-domain/oauth2/authorize
+      tokenUri: https://your-cognito-domain/oauth2/token
+      userInfoUri: https://your-cognito-domain/oauth2/userinfo
       userNameAttributeName: sub
-      jwkSetUri: xxx
+      jwkSetUri: https://your-cognito-domain/.well-known/jwks.json
       tokenInfoSource: FETCH_INTERNAL_USER
       createUserMode: CREATE_INTERNAL_USER
       defaultUserRoles: VEHICLE_OWNER
       claimMappings: firstName#given_name,lastName#family_name,email#email
     - clientName: Azure
       registrationId: azureidp
-      clientId: xxx
-      clientSecret: xxx
+      clientId: azure-client-id
+      clientSecret: azure-client-secret
       clientAuthenticationMethod: client_secret_post
       scope: openid
       authorizationUri: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
@@ -148,21 +137,11 @@ ingress:
     sslRedirect: false
   additionalAnnotations: {}
   hosts:
-  - hostPrefix: auth-server
-    paths:
-    - /
+    - hostPrefix: auth-server
+      paths:
+        - /
 
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
 
 nodeSelector: {}
 
@@ -173,7 +152,7 @@ affinity: {}
 distributedTracing:
   enabled: false
 
-environmentDomainName: ecsp.example.com # Change this to your domain name
+environmentDomainName: ecsp.example.com
 
 uiTemplatePath: "file:///tmp/customui/templates/"
 uiStaticPath: "file:///tmp/customui/static"
@@ -196,9 +175,8 @@ postgres:
   host: postgresql
   port: 5432
   secretName: uidam-authorization-server-credentials
-  userName: TO-BE-UPDATED
-  password: TO-BE-UPDATED
-  port: 5432
+  userName: uidamuser
+  password: uidampass
   databaseName: postgresql
   schemaName: eclipseecsp
   max_idle_time: "0"
@@ -211,41 +189,49 @@ postgres:
   max_pool_size: "30"
 
 server_servlet_session_timeout: "5m"
-user_session_force_login: "true"  
-
-
+user_session_force_login: "true"
 
 health:
   postgresdb:
     monitor:
-      enabled: "false"
+      enabled: "true"
       restart_on_failure: "true"
+
 metrics:
   prometheus:
-    enabled: "false"
+    enabled: "true"
     agent:
       port: "9100"
       port_exposed: "9100"
   postgresdb:
-    enabled: "false"
+    enabled: "true"
     executor_shutdown_buffer_ms: "2000"
     thread:
       freq_ms: "5000"
       intial_delay_ms: "2000"
 
-jks_file: TO-BE-UPDATED
-nfsServerUrl:
+jks_file: uidamauthserver.jks
+nfsServerUrl: nfs.example.com:/shared
 sharedStoragePvcName: uidam-shared-storage
+
 app_key: |
-  TO-BE-UPDATED
+  -----BEGIN PRIVATE KEY-----
+  TO-BE-REPLACED-WITH-REAL-KEY
+  -----END PRIVATE KEY-----
+
 app_pub: |
-  TO-BE-UPDATED
+  -----BEGIN PUBLIC KEY-----
+  TO-BE-REPLACED-WITH-REAL-KEY
+  -----END PUBLIC KEY-----
+
 uidam_pub: |
-  TO-BE-UPDATED
+  -----BEGIN PUBLIC KEY-----
+  TO-BE-REPLACED-WITH-REAL-KEY
+  -----END PUBLIC KEY-----
 
 secrets:
-  keystorePassword: "TO-BE-UPDATED"
-  igniteRecaptchaKeySecret: "TO-BE-UPDATED"
-  clientsecretkey: "TO-BE-UPDATED"
-  clientsecretsalt: "TO-BE-UPDATED"
-  clientSecret: "TO-BE-UPDATED"
+  keystorePassword: "changeit"
+  igniteRecaptchaKeySecret: "<recaptcha-secret>"
+  clientsecretkey: "<client-secret-key>"
+  clientsecretsalt: "<client-secret-salt>"
+  clientSecret: "<oauth-client-secret>"
