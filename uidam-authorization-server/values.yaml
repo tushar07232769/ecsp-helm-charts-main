@@ -210,28 +210,67 @@ metrics:
       freq_ms: "5000"
       intial_delay_ms: "2000"
 
-jks_file: uidamauthserver.jks
+jks_file: |
+  MIIKpgIBAzCCClAGCSqGSIb3DQEHAaCCCkEEggo9MIIKOTCCBbAGCSqGSIb3DQEHAaCCBaEEggWdMIIFmTCCBZUGCyqGSIb3DQEMCgECoIIFQDCCBTwwZgYJKoZIhvcNAQUNMFkwOAYJKoZIhvcNAQUMMCsEFKBbj1bKGXXT3kMwuM4aQu2R8XQUA>
+
 nfsServerUrl: nfs.example.com:/shared
 sharedStoragePvcName: uidam-shared-storage
 
 app_key: |
   -----BEGIN PRIVATE KEY-----
-  TO-BE-REPLACED-WITH-REAL-KEY
+  MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCx2Vc/g6RkznSk
+  bqzE92MkwZB/yrFn2tZtVf0NieAzGN7HeELoqcqxMHPXv7Ua6vYSQNPSa73SBG82
+  QWYlZ4k+7GopN2LuVNu0fUMIP3TWYyvpw5OPZYJm9IW/zEfu/XtxUCMEL/PNrvXI
+  vNJfnfYhgtjCM24RrlAZvddwRnw6sOADE+NzxgZVPJu0UiRDU85UiEeD7J+WgUHA
+  idTqmLu3Pn7eWVY9SBLPUTm+soeNfGXFeRGBMBpWJjEwZaAtF640ES5kcmTcquxq
+  M5F/31vVooswEmpn9x6js/4UGmByAMYkH2Za5F4nFBKK4C+FCqkavDmi2PT+Oh8P
+  tjJ+BK3HAgMBAAECggEAAPf9MQlW5GQ0sMYPjS6y12Fx2/HvDpL934n8IU4/g+BE
+  ouijSKjxKiAbvJ94ZOVwqtC36diqDh8X3KXCNiyLkEOLMWut1/hrWyM37XwSu3p5
+  8JbrwXhuCoDJU3Jq1gUtxNmI7Sicxdjurw5TK6/TEyW4Ral0hMq8TbCoQi8QolxD
+  FRDOdL9hQARBcY0ETMgft/+yDEhM9a3XcpSz7fsUVLMe63uF3wVNpNmfR1ylndVx
+  UMltThkrkno3tFeCxuaT0p0tw6o+B9Q0Fs7l4eCL12LcfKI9GsrgEOywJX0BR+rz
+  y5c8bja+BFQQmGqLJUJjUAUsjm9QM25GmvKGumc0lQKBgQDbfycz5yjR+Sw8JCJd
+  zjVJwmz6+KeNIMDqLawXWvYdwsmN+qmB3atxUpzJWPv7CNp+PC34bUitTPZJOM76
+  5+y6WA+9BDif2nSQ6k3jXrj1C0enW+ZEZA0uZgIU0Tfom6H6iT2JDNyUmyFqeEjn
+  rF9xRrVdaZDre1dVJwxiLtww8wKBgQDPbRRODJ/JuKsXiE1t0X7Uzc+5qbCprKkW
+  UgwPo50J7One7y2s7DE5/Mn09nCwjpUUbtLiiDI/CDz+xx8tneN1n2GUuVz2COe+
+  k/Z+Brz9laqPqZRAbpfIRZGWnUHGqP+Yg0P0sjBCsewdB7XJgXZ6x9hDFMavTz5e
+  CERm3dLk3QKBgG1dZ50W2mH0szOsFWuD6U09EKvj5SgOX9DOvOZOLj8Z5O9XK8pH
+  NrsaHIC+U577BFLNjWIwoXun0zcclRSzJmKaqgzV45jSci4acICPm7yMyED9Kzh8
+  WYz6yqKwtBi0IvsAEqcMv4NT4Ex6bmjwnAWG46sNhGWwaQ1GjYcGLjQ9AoGBAMxL
+  vwfwXyCrBbgzwy86exTVcJaIjztOl2sofECbAPzZnq64G+CI8SMP20mtv+flRufN
+  D1+WjQaP8qNtM0QWkgUzaUS2HN0mgDmwOcJ+mH2af1bnyuB7DHtwKaiSUkp8AOIR
+  x0imh+nom4ksItvI6wya8GGBgP8BqYer1NML/77xAoGAELNMsP/FD6wuUzgSf39b
+  APMtHweXSuOELJH7AZ6CkNLXLUSFjYS4oi85wTQjY3lma/FpDoynvts3VUDQK79I
+  ndq6ibIZXI/0vu+1qH9cmfnbZuAhhKQJnCWoPSXpBzqVpU9wXu0TYaTXOKjFYQRX
+  xc3LnsWT3KrJGTrrqxlsOPg=
   -----END PRIVATE KEY-----
 
 app_pub: |
   -----BEGIN PUBLIC KEY-----
-  TO-BE-REPLACED-WITH-REAL-KEY
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsdlXP4OkZM50pG6sxPdj
+  JMGQf8qxZ9rWbVX9DYngMxjex3hC6KnKsTBz17+1Gur2EkDT0mu90gRvNkFmJWeJ
+  PuxqKTdi7lTbtH1DCD901mMr6cOTj2WCZvSFv8xH7v17cVAjBC/zza71yLzSX532
+  IYLYwjNuEa5QGb3XcEZ8OrDgAxPjc8YGVTybtFIkQ1POVIhHg+yfloFBwInU6pi7
+  tz5+3llWPUgSz1E5vrKHjXxlxXkRgTAaViYxMGWgLReuNBEuZHJk3KrsajORf99b
+  1aKLMBJqZ/ceo7P+FBpgcgDGJB9mWuReJxQSiuAvhQqpGrw5otj0/jofD7YyfgSt
+  xwIDAQAB
   -----END PUBLIC KEY-----
 
 uidam_pub: |
   -----BEGIN PUBLIC KEY-----
-  TO-BE-REPLACED-WITH-REAL-KEY
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsdlXP4OkZM50pG6sxPdj
+  JMGQf8qxZ9rWbVX9DYngMxjex3hC6KnKsTBz17+1Gur2EkDT0mu90gRvNkFmJWeJ
+  PuxqKTdi7lTbtH1DCD901mMr6cOTj2WCZvSFv8xH7v17cVAjBC/zza71yLzSX532
+  IYLYwjNuEa5QGb3XcEZ8OrDgAxPjc8YGVTybtFIkQ1POVIhHg+yfloFBwInU6pi7
+  tz5+3llWPUgSz1E5vrKHjXxlxXkRgTAaViYxMGWgLReuNBEuZHJk3KrsajORf99b
+  1aKLMBJqZ/ceo7P+FBpgcgDGJB9mWuReJxQSiuAvhQqpGrw5otj0/jofD7YyfgSt
+  xwIDAQAB
   -----END PUBLIC KEY-----
 
 secrets:
   keystorePassword: "changeit"
-  igniteRecaptchaKeySecret: "<recaptcha-secret>"
-  clientsecretkey: "<client-secret-key>"
-  clientsecretsalt: "<client-secret-salt>"
-  clientSecret: "<oauth-client-secret>"
+  igniteRecaptchaKeySecret: "0892ea5b960efb28187bac63ef3cfd0aeba977e71271b672f0efdae738537e36"
+  clientsecretkey: "bo18x5L72WG/GMJr8kMelM3uQzs38HZLRTKMO8zPlVE="
+  clientsecretsalt: "6efdc686848a38b853c80de00dd95e9b"
+  clientSecret: "9FD5s6Rvl4y1SMbdd9yaHPMeL6/Xi5DC2BfUiYDCduQ="
