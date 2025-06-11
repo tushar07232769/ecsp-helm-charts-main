@@ -210,8 +210,7 @@ metrics:
       freq_ms: "5000"
       intial_delay_ms: "2000"
 
-jks_file: |
-  MIIKpgIBAzCCClAGCSqGSIb3DQEHAaCCCkEEggo9MIIKOTCCBbAGCSqGSIb3DQEHAaCCBaEEggWdMIIFmTCCBZUGCyqGSIb3DQEMCgECoIIFQDCCBTwwZgYJKoZIhvcNAQUNMFkwOAYJKoZIhvcNAQUMMCsEFKBbj1bKGXXT3kMwuM4aQu2R8XQUA>
+jks_file: uidamauthserver.jks
 
 nfsServerUrl: nfs.example.com:/shared
 sharedStoragePvcName: uidam-shared-storage
