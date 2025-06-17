@@ -16,3 +16,12 @@ type: application
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
 version: 0.0.1
+volumes:
+  - name: tls-keystore
+    secret:
+      secretName: uidam-keystore
+
+volumeMounts:
+  - name: tls-keystore
+    mountPath: /app/uidamauthserver.jks
+    subPath: uidamauthserver.jks
